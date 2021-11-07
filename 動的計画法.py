@@ -74,3 +74,44 @@ for i in range(1,n+1):
         take_times.append(ans[i-j]+j*A[i-j-1])
     ans[i] = min(take_times)
 print(ans[n])
+
+# 5 WA
+n,m = map(int,input().split())
+A = list(map(int,input().split()))
+
+ans = [0]*(n+1)
+
+for i in range(1,n+1):
+	take_times = []
+	print(ans)
+	for j in range(1,min(i+1,m+1)):
+		print(j)
+		print(A[i-j])
+		take_times.append(ans[i-j]+j*A[i-j])
+	print(take_times)
+	ans[i] = min(take_times)
+print(ans)
+
+
+# 6 WA
+n,m = map(int,input().split())
+D = list(map(int,input().split()))
+
+dp = [[]]*(m+1)
+dp[1] = D
+for i in range(2,m+1):
+    points = []
+    for j in dp[i-1]:
+        for k in D:
+            points.append(j+k)
+    dp[i] = list(set(points))
+
+ans = []
+for i in range(1,m+1):
+    ans.extend(dp[i])
+ans = set(ans)
+
+if n in ans:
+    print("Yes")
+else:
+    print("No")
